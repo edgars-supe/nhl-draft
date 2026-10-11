@@ -1,0 +1,54 @@
+[
+  {
+    "player": "Raivis",
+    "teams": [
+      "COL",
+      "MIN",
+      "ANA",
+      "WSH",
+      "UTA",
+      "NJD",
+      "CBJ",
+      "CGY"
+    ]
+  },
+  {
+    "player": "Edgars",
+    "teams": [
+      "CAR",
+      "MTL",
+      "OTT",
+      "NYR",
+      "PIT",
+      "SEA",
+      "NSH",
+      "VAN"
+    ]
+  },
+  {
+    "player": "Kārlis",
+    "teams": [
+      "EDM",
+      "VGK",
+      "BUF",
+      "BOS",
+      "SJS",
+      "STL",
+      "CHI",
+      "PHI"
+    ]
+  },
+  {
+    "player": "Jānis",
+    "teams": [
+      "DAL",
+      "TBL",
+      "TOR",
+      "FLA",
+      "WPG",
+      "LAK",
+      "NYI",
+      "DET"
+    ]
+  }
+]
