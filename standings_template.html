@@ -14,14 +14,41 @@
             <div class="update-time">Last updated: {{ update_time }}</div>
         </header>
 
+        <div class="records-section">
+            <h3>Fantasy Rankings</h3>
+            <div class="records-table-wrapper">
+                <table class="records-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Drafter</th>
+                            <th>Record</th>
+                            <th>Teams</th>
+                            <th style="text-align:right">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%- for drafter in drafters %}
+                        <tr>
+                            <td class="rank-col">{{ loop.index }}</td>
+                            <td class="drafter-col">{{ drafter.name }}</td>
+                            <td class="record-col">{{ drafter.record }}</td>
+                            <td class="teams-col">{{ drafter.sorted_teams | map(attribute='abbrev') | join(', ') }}</td>
+                            <td class="pts-col">{{ drafter.total_points }}</td>
+                        </tr>
+                        {%- endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         {% for drafter in drafters -%}
-            {%- set total = loop.index %}
-        <div class="drafter-section">
-            <div class="drafter-header">
+        <details class="drafter-section" open>
+            <summary class="drafter-header">
                 <span class="rank-badge">#{{ loop.index }}</span>
                 <h2>{{ drafter.name }}</h2>
                 <span class="total-pts">{{ drafter.total_points }} pts</span>
-            </div>
+            </summary>
             <div class="teams-grid">
                 {%- for team in drafter.sorted_teams %}
                 <div class="team-card">
@@ -80,34 +107,8 @@
                 </div>
                 {%- endfor %}
             </div>
-        </div>
+        </details>
         {%- endfor %}
-
-        <div class="records-section">
-            <h3>Fantasy Rankings</h3>
-            <div class="records-table-wrapper">
-                <table class="records-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Drafter</th>
-                            <th>Record</th>
-                            <th style="text-align:right">Points</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {%- for drafter in drafters %}
-                        <tr>
-                            <td class="rank-col">{{ loop.index }}</td>
-                            <td class="drafter-col">{{ drafter.name }}</td>
-                            <td class="record-col">{{ drafter.record }}</td>
-                            <td class="pts-col">{{ drafter.total_points }}</td>
-                        </tr>
-                        {%- endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
         <div class="footer">
             Data from nhl.com · Updated automatically

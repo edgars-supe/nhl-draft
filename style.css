@@ -41,7 +41,16 @@ header .update-time {
 }
 
 .drafter-section {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.drafter-section > summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.drafter-section > summary::-webkit-details-marker {
+    display: none;
 }
 
 .drafter-header {
@@ -81,6 +90,10 @@ header .update-time {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1rem;
+}
+
+.drafter-section .teams-grid {
+    margin-top: 1rem;
 }
 
 .team-card {
@@ -186,9 +199,7 @@ header .update-time {
 .stat .stat-value.negative { color: #f85149; }
 
 .records-section {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #21262d;
+    margin-bottom: 2rem;
 }
 
 .records-section h3 {
@@ -254,6 +265,11 @@ header .update-time {
 .records-table .record-col {
     font-family: "SF Mono", "Fira Code", monospace;
     font-weight: 600;
+}
+
+.records-table .teams-col {
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.8rem;
 }
 
 .records-table .pts-col {
