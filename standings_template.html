@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NHL Fantasy Draft Standings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NHL Fantasy Draft</h1>
+            <div class="subtitle">Live Standings</div>
+            <div class="update-time">Last updated: {{ update_time }}</div>
+        </header>
+
+        {% for drafter in drafters -%}
+            {%- set total = loop.index %}
+        <div class="drafter-section">
+            <div class="drafter-header">
+                <span class="rank-badge">#{{ loop.index }}</span>
+                <h2>{{ drafter.name }}</h2>
+                <span class="total-pts">{{ drafter.total_points }} pts</span>
+            </div>
+            <div class="teams-grid">
+                {%- for team in drafter.sorted_teams %}
+                <div class="team-card">
+                    <div class="team-card-top">
+                        <div class="logo-circle">
+                        {%- if team.logo %}
+                        <img src="{{ team.logo }}" alt="{{ team.abbrev }}" class="team-logo">
+                        {%- else %}
+                        <span style="font-weight:700;color:#8b949e;">?</span>
+                        {%- endif %}
+                        </div>
+                        <div class="team-info">
+                            <div class="team-name">{{ team.common_name }}</div>
+                            <div class="team-abbrev">{{ team.abbrev }}</div>
+                            <span class="division-tag">{{ team.conference }} — {{ team.division }}</span>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <div class="stat-value">{{ team.games_played }}</div>
+                            <div class="stat-label">GP</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">{{ team.wins }}</div>
+                            <div class="stat-label">W</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">{{ team.losses }}</div>
+                            <div class="stat-label">L</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">{{ team.ot_losses }}</div>
+                            <div class="stat-label">OTL</div>
+                        </div>
+                    </div>
+                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
+                        <div class="stat">
+                            <div class="stat-value" style="color:#d2a8ff;">{{ team.points }}</div>
+                            <div class="stat-label">PTS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">{{ team.goal_for }}</div>
+                            <div class="stat-label">GF</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">{{ team.goal_against }}</div>
+                            <div class="stat-label">GA</div>
+                        </div>
+                        {%- set diff_class = "positive" if team.goal_differential > 0 else ("negative" if team.goal_differential < 0 else "") %}
+                        {%- set diff_display = "+%d" % team.goal_differential if team.goal_differential > 0 else team.goal_differential %}
+                        <div class="stat">
+                            <div class="stat-value {{ diff_class }}">{{ diff_display }}</div>
+                            <div class="stat-label">DIFF</div>
+                        </div>
+                    </div>
+                </div>
+                {%- endfor %}
+            </div>
+        </div>
+        {%- endfor %}
+
+        <div class="records-section">
+            <h3>Fantasy Rankings</h3>
+            <div class="records-table-wrapper">
+                <table class="records-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Drafter</th>
+                            <th>Record</th>
+                            <th style="text-align:right">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%- for drafter in drafters %}
+                        <tr>
+                            <td class="rank-col">{{ loop.index }}</td>
+                            <td class="drafter-col">{{ drafter.name }}</td>
+                            <td class="record-col">{{ drafter.record }}</td>
+                            <td class="pts-col">{{ drafter.total_points }}</td>
+                        </tr>
+                        {%- endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            Data from nhl.com · Updated automatically
+        </div>
+    </div>
+</body>
+</html>

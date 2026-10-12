@@ -1,9 +1,10 @@
 import json
-from nhlpy import NHLClient
+from nhlpy.nhl_client import NHLClient
 
 from standings import get_teams
 from models import Drafter
 from display import print_results
+from html_output import generate_html
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
         draft = json.load(f)
     drafters = [Drafter(d['player'], {teams[t] for t in d['teams']}) for d in draft]
     print_results(drafters)
+    generate_html(drafters)
 
 if __name__ == '__main__':
     main()
