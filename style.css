@@ -268,8 +268,80 @@ header .update-time {
 }
 
 .records-table .teams-col {
+    line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.team-badge {
+    display: inline-block;
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 3px;
+    padding: 0 4px;
     font-family: "SF Mono", "Fira Code", monospace;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    color: #c9d1d9;
+    margin: 0 2px;
+    line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+    .records-table {
+        font-size: 0.75rem;
+    }
+
+    .records-table td,
+    .records-table th {
+        padding: 0.4rem 0.5rem;
+    }
+
+    .records-table .teams-col {
+        line-height: 1.2;
+        font-size: 0.7rem;
+    }
+
+    .records-table .teams-col .team-badge {
+        font-size: 0.5rem;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background: transparent;
+        line-height: 1;
+    }
+
+    .records-table .teams-col .team-badge::before {
+        content: " ";
+        color: #484f58;
+    }
+
+    .records-table .teams-col .team-badge:first-child::before {
+        content: "";
+    }
+
+    .records-table .teams-col {
+        line-height: 1;
+        font-size: 0.65rem;
+    }
+
+    .records-table .teams-col .team-badge::after {
+        content: ",";
+        margin-left: 0;
+        color: #484f58;
+    }
+
+    .records-table .teams-col .team-badge:last-child::after {
+        content: "";
+    }
+
+    .records-table .drafter-col {
+        font-size: 0.75rem;
+    }
+
+    .records-table .record-col,
+    .records-table .pts-col {
+        font-size: 0.7rem;
+    }
 }
 
 .records-table .pts-col {

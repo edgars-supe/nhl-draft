@@ -33,7 +33,7 @@
                             <td class="rank-col">{{ loop.index }}</td>
                             <td class="drafter-col">{{ drafter.name }}</td>
                             <td class="record-col">{{ drafter.record }}</td>
-                            <td class="teams-col">{{ drafter.sorted_teams | map(attribute='abbrev') | join(', ') }}</td>
+                            <td class="teams-col">{{ drafter.sorted_teams | team_badges }}</td>
                             <td class="pts-col">{{ drafter.total_points }}</td>
                         </tr>
                         {%- endfor %}

@@ -45,6 +45,15 @@ def generate_html(drafters: list[Drafter], output_file: str = "index.html"):
         trim_blocks=True,
         lstrip_blocks=True,
     )
+
+    def team_badges(teams):
+        return "".join(
+            f'<span class="team-badge">{t["abbrev"]}</span>'
+            for t in teams
+        )
+
+    env.filters["team_badges"] = team_badges
+
     template = env.get_template("standings_template.html")
 
     data = [_build_drafter(d) for d in drafters]
