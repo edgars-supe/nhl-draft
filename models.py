@@ -11,8 +11,6 @@ class Team:
         self.goal_for = data['goalFor']
         self.goal_against = data['goalAgainst']
         self.goal_differential = data.get('goalDifferential', 0)
-        self.point_pctg = data['pointPctg']
-        self.win_pctg = data['winPctg']
         self.logo = data.get('teamLogo', '')
         self.division = data.get('divisionName', '')
         self.conference = data.get('conferenceName', '')

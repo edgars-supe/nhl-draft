@@ -4,6 +4,7 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
 from models import Drafter, Team
+from history import load_history
 
 
 def _build_drafter(drafter: Drafter) -> dict:
@@ -56,7 +57,9 @@ def generate_html(drafters: list[Drafter], output_file: str = "index.html"):
         mtime = datetime.now(local_tz)
     update_time = mtime.strftime("%B %d, %Y at %H:%M %z")
 
-    html = template.render(drafters=data, update_time=update_time)
+    history = load_history()
+
+    html = template.render(drafters=data, update_time=update_time, history=history)
 
     with open(output_file, "w") as f:
         f.write(html)

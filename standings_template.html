@@ -42,6 +42,14 @@
             </div>
         </div>
 
+        <div class="chart-section" {% if not history %}style="display:none"{% endif %}>
+            <h3>Points Over Time</h3>
+            <div id="chart-container">
+                <canvas id="chart"></canvas>
+            </div>
+
+        </div>
+
         {% for drafter in drafters -%}
         <details class="drafter-section" open>
             <summary class="drafter-header">
@@ -114,5 +122,84 @@
             Data from nhl.com · Updated automatically
         </div>
     </div>
+
+    {% if history %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script>
+    (function() {
+        const history = {{ history | tojson }};
+        const ctx = document.getElementById('chart');
+        const names = [];
+        const datasets = [];
+        const labels = history.map(e => e.date);
+
+        for (const e of history) {
+            for (const d of e.drafters) {
+                if (!names.includes(d.name)) names.push(d.name);
+            }
+        }
+
+        const colors = ['#58a6ff', '#f0883e', '#3fb950', '#d2a8ff', '#f85149', '#79c0ff'];
+
+        for (let ni = 0; ni < names.length; ni++) {
+            const name = names[ni];
+            const color = colors[ni % colors.length];
+            const points = history.map(e => {
+                const d = e.drafters.find(d => d.name === name);
+                return d ? d.points : null;
+            });
+            datasets.push({
+                label: name,
+                data: points,
+                borderColor: color,
+                backgroundColor: color,
+                borderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                pointBackgroundColor: color,
+                pointBorderColor: '#fff',
+                pointBorderWidth: 1.5,
+                tension: 0,
+                spanGaps: false
+            });
+        }
+
+        new Chart(ctx, {
+            type: 'line',
+            data: { labels, datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: {
+                        labels: { color: '#484f58', font: { size: 11 } }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y} pts`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            maxTicksLimit: 10,
+                            color: '#484f58',
+                            font: { size: 10 }
+                        },
+                        grid: { color: '#21262d' }
+                    },
+                    y: {
+                        min: 0,
+                        ticks: { color: '#484f58', font: { size: 11 } },
+                        grid: { color: '#21262d' }
+                    }
+                }
+            }
+        });
+    })();
+    </script>
+    {% endif %}
 </body>
 </html>
