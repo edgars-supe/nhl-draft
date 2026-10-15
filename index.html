@@ -11,7 +11,7 @@
         <header>
             <h1>NHL Fantasy Draft</h1>
             <div class="subtitle">Live Standings</div>
-            <div class="update-time">Last updated: October 14, 2026 at 16:46 +0000</div>
+            <div class="update-time">Last updated: October 15, 2026 at 16:32 +0000</div>
         </header>
 
         <div class="records-section">
@@ -30,30 +30,38 @@
                     <tbody>                        <tr>
                             <td class="rank-col">1</td>
                             <td class="drafter-col">Edgars</td>
-                            <td class="record-col">32-20-5</td>
-                            <td class="teams-col">CAR, NYR, SEA, OTT, MTL, PIT, NSH, VAN</td>
+                            <td class="record-col">32-21-5</td>
+                            <td class="teams-col"><span class="team-badge">CAR</span><span class="team-badge">NYR</span><span class="team-badge">SEA</span><span class="team-badge">OTT</span><span class="team-badge">PIT</span><span class="team-badge">MTL</span><span class="team-badge">NSH</span><span class="team-badge">VAN</span></td>
                             <td class="pts-col">69</td>
                         </tr>                        <tr>
                             <td class="rank-col">2</td>
                             <td class="drafter-col">Kārlis</td>
                             <td class="record-col">27-22-6</td>
-                            <td class="teams-col">VGK, EDM, BOS, STL, BUF, SJS, CHI, PHI</td>
+                            <td class="teams-col"><span class="team-badge">VGK</span><span class="team-badge">EDM</span><span class="team-badge">BOS</span><span class="team-badge">BUF</span><span class="team-badge">STL</span><span class="team-badge">SJS</span><span class="team-badge">CHI</span><span class="team-badge">PHI</span></td>
                             <td class="pts-col">60</td>
                         </tr>                        <tr>
                             <td class="rank-col">3</td>
                             <td class="drafter-col">Raivis</td>
-                            <td class="record-col">26-22-1</td>
-                            <td class="teams-col">UTA, MIN, ANA, COL, NJD, WSH, CBJ, CGY</td>
-                            <td class="pts-col">53</td>
+                            <td class="record-col">27-22-2</td>
+                            <td class="teams-col"><span class="team-badge">UTA</span><span class="team-badge">COL</span><span class="team-badge">MIN</span><span class="team-badge">WSH</span><span class="team-badge">ANA</span><span class="team-badge">NJD</span><span class="team-badge">CBJ</span><span class="team-badge">CGY</span></td>
+                            <td class="pts-col">56</td>
                         </tr>                        <tr>
                             <td class="rank-col">4</td>
                             <td class="drafter-col">Jānis</td>
-                            <td class="record-col">20-20-9</td>
-                            <td class="teams-col">WPG, FLA, TBL, TOR, NYI, DAL, DET, LAK</td>
-                            <td class="pts-col">49</td>
+                            <td class="record-col">21-20-9</td>
+                            <td class="teams-col"><span class="team-badge">WPG</span><span class="team-badge">TBL</span><span class="team-badge">FLA</span><span class="team-badge">TOR</span><span class="team-badge">DAL</span><span class="team-badge">NYI</span><span class="team-badge">DET</span><span class="team-badge">LAK</span></td>
+                            <td class="pts-col">51</td>
                         </tr>                    </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class="chart-section" >
+            <h3>Points Over Time</h3>
+            <div id="chart-container">
+                <canvas id="chart"></canvas>
+            </div>
+
         </div>
 
 <details class="drafter-section" open>
@@ -240,50 +248,6 @@
                     </div>
                 </div>                <div class="team-card">
                     <div class="team-card-top">
-                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/MTL_light.svg" alt="MTL" class="team-logo">                        </div>
-                        <div class="team-info">
-                            <div class="team-name">Canadiens</div>
-                            <div class="team-abbrev">MTL</div>
-                            <span class="division-tag">Eastern — Atlantic</span>
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <div class="stat-value">6</div>
-                            <div class="stat-label">GP</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">W</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">L</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">1</div>
-                            <div class="stat-label">OTL</div>
-                        </div>
-                    </div>
-                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
-                        <div class="stat">
-                            <div class="stat-value" style="color:#d2a8ff;">7</div>
-                            <div class="stat-label">PTS</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">19</div>
-                            <div class="stat-label">GF</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">22</div>
-                            <div class="stat-label">GA</div>
-                        </div>                        <div class="stat">
-                            <div class="stat-value negative">-3</div>
-                            <div class="stat-label">DIFF</div>
-                        </div>
-                    </div>
-                </div>                <div class="team-card">
-                    <div class="team-card-top">
                         <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/PIT_light.svg" alt="PIT" class="team-logo">                        </div>
                         <div class="team-info">
                             <div class="team-name">Penguins</div>
@@ -323,6 +287,50 @@
                             <div class="stat-label">GA</div>
                         </div>                        <div class="stat">
                             <div class="stat-value positive">+3</div>
+                            <div class="stat-label">DIFF</div>
+                        </div>
+                    </div>
+                </div>                <div class="team-card">
+                    <div class="team-card-top">
+                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/MTL_light.svg" alt="MTL" class="team-logo">                        </div>
+                        <div class="team-info">
+                            <div class="team-name">Canadiens</div>
+                            <div class="team-abbrev">MTL</div>
+                            <span class="division-tag">Eastern — Atlantic</span>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">GP</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">W</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">L</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">OTL</div>
+                        </div>
+                    </div>
+                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
+                        <div class="stat">
+                            <div class="stat-value" style="color:#d2a8ff;">7</div>
+                            <div class="stat-label">PTS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">23</div>
+                            <div class="stat-label">GF</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">27</div>
+                            <div class="stat-label">GA</div>
+                        </div>                        <div class="stat">
+                            <div class="stat-value negative">-4</div>
                             <div class="stat-label">DIFF</div>
                         </div>
                     </div>
@@ -555,50 +563,6 @@
                     </div>
                 </div>                <div class="team-card">
                     <div class="team-card-top">
-                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/STL_light.svg" alt="STL" class="team-logo">                        </div>
-                        <div class="team-info">
-                            <div class="team-name">Blues</div>
-                            <div class="team-abbrev">STL</div>
-                            <span class="division-tag">Western — Central</span>
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <div class="stat-value">6</div>
-                            <div class="stat-label">GP</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">W</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">L</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">1</div>
-                            <div class="stat-label">OTL</div>
-                        </div>
-                    </div>
-                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
-                        <div class="stat">
-                            <div class="stat-value" style="color:#d2a8ff;">7</div>
-                            <div class="stat-label">PTS</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">21</div>
-                            <div class="stat-label">GF</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">18</div>
-                            <div class="stat-label">GA</div>
-                        </div>                        <div class="stat">
-                            <div class="stat-value positive">+3</div>
-                            <div class="stat-label">DIFF</div>
-                        </div>
-                    </div>
-                </div>                <div class="team-card">
-                    <div class="team-card-top">
                         <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/BUF_light.svg" alt="BUF" class="team-logo">                        </div>
                         <div class="team-info">
                             <div class="team-name">Sabres</div>
@@ -638,6 +602,50 @@
                             <div class="stat-label">GA</div>
                         </div>                        <div class="stat">
                             <div class="stat-value negative">-7</div>
+                            <div class="stat-label">DIFF</div>
+                        </div>
+                    </div>
+                </div>                <div class="team-card">
+                    <div class="team-card-top">
+                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/STL_light.svg" alt="STL" class="team-logo">                        </div>
+                        <div class="team-info">
+                            <div class="team-name">Blues</div>
+                            <div class="team-abbrev">STL</div>
+                            <span class="division-tag">Western — Central</span>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">GP</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">W</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">L</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">OTL</div>
+                        </div>
+                    </div>
+                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
+                        <div class="stat">
+                            <div class="stat-value" style="color:#d2a8ff;">7</div>
+                            <div class="stat-label">PTS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">21</div>
+                            <div class="stat-label">GF</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">GA</div>
+                        </div>                        <div class="stat">
+                            <div class="stat-value positive">+3</div>
                             <div class="stat-label">DIFF</div>
                         </div>
                     </div>
@@ -778,7 +786,7 @@
             <summary class="drafter-header">
                 <span class="rank-badge">#3</span>
                 <h2>Raivis</h2>
-                <span class="total-pts">53 pts</span>
+                <span class="total-pts">56 pts</span>
             </summary>
             <div class="teams-grid">                <div class="team-card">
                     <div class="team-card-top">
@@ -821,6 +829,50 @@
                             <div class="stat-label">GA</div>
                         </div>                        <div class="stat">
                             <div class="stat-value positive">+8</div>
+                            <div class="stat-label">DIFF</div>
+                        </div>
+                    </div>
+                </div>                <div class="team-card">
+                    <div class="team-card-top">
+                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/COL_light.svg" alt="COL" class="team-logo">                        </div>
+                        <div class="team-info">
+                            <div class="team-name">Avalanche</div>
+                            <div class="team-abbrev">COL</div>
+                            <span class="division-tag">Western — Central</span>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">GP</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">W</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">L</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">OTL</div>
+                        </div>
+                    </div>
+                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
+                        <div class="stat">
+                            <div class="stat-value" style="color:#d2a8ff;">9</div>
+                            <div class="stat-label">PTS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">31</div>
+                            <div class="stat-label">GF</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">22</div>
+                            <div class="stat-label">GA</div>
+                        </div>                        <div class="stat">
+                            <div class="stat-value positive">+9</div>
                             <div class="stat-label">DIFF</div>
                         </div>
                     </div>
@@ -870,6 +922,50 @@
                     </div>
                 </div>                <div class="team-card">
                     <div class="team-card-top">
+                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/WSH_secondary_light.svg" alt="WSH" class="team-logo">                        </div>
+                        <div class="team-info">
+                            <div class="team-name">Capitals</div>
+                            <div class="team-abbrev">WSH</div>
+                            <span class="division-tag">Eastern — Metropolitan</span>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">GP</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">W</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">L</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">OTL</div>
+                        </div>
+                    </div>
+                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
+                        <div class="stat">
+                            <div class="stat-value" style="color:#d2a8ff;">8</div>
+                            <div class="stat-label">PTS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">GF</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">22</div>
+                            <div class="stat-label">GA</div>
+                        </div>                        <div class="stat">
+                            <div class="stat-value positive">+2</div>
+                            <div class="stat-label">DIFF</div>
+                        </div>
+                    </div>
+                </div>                <div class="team-card">
+                    <div class="team-card-top">
                         <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/ANA_light.svg" alt="ANA" class="team-logo">                        </div>
                         <div class="team-info">
                             <div class="team-name">Ducks</div>
@@ -914,50 +1010,6 @@
                     </div>
                 </div>                <div class="team-card">
                     <div class="team-card-top">
-                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/COL_light.svg" alt="COL" class="team-logo">                        </div>
-                        <div class="team-info">
-                            <div class="team-name">Avalanche</div>
-                            <div class="team-abbrev">COL</div>
-                            <span class="division-tag">Western — Central</span>
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <div class="stat-value">6</div>
-                            <div class="stat-label">GP</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">4</div>
-                            <div class="stat-label">W</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">L</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">0</div>
-                            <div class="stat-label">OTL</div>
-                        </div>
-                    </div>
-                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
-                        <div class="stat">
-                            <div class="stat-value" style="color:#d2a8ff;">8</div>
-                            <div class="stat-label">PTS</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">29</div>
-                            <div class="stat-label">GF</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">19</div>
-                            <div class="stat-label">GA</div>
-                        </div>                        <div class="stat">
-                            <div class="stat-value positive">+10</div>
-                            <div class="stat-label">DIFF</div>
-                        </div>
-                    </div>
-                </div>                <div class="team-card">
-                    <div class="team-card-top">
                         <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/NJD_light.svg" alt="NJD" class="team-logo">                        </div>
                         <div class="team-info">
                             <div class="team-name">Devils</div>
@@ -997,50 +1049,6 @@
                             <div class="stat-label">GA</div>
                         </div>                        <div class="stat">
                             <div class="stat-value negative">-6</div>
-                            <div class="stat-label">DIFF</div>
-                        </div>
-                    </div>
-                </div>                <div class="team-card">
-                    <div class="team-card-top">
-                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/WSH_secondary_light.svg" alt="WSH" class="team-logo">                        </div>
-                        <div class="team-info">
-                            <div class="team-name">Capitals</div>
-                            <div class="team-abbrev">WSH</div>
-                            <span class="division-tag">Eastern — Metropolitan</span>
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <div class="stat-value">6</div>
-                            <div class="stat-label">GP</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">W</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">L</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">0</div>
-                            <div class="stat-label">OTL</div>
-                        </div>
-                    </div>
-                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
-                        <div class="stat">
-                            <div class="stat-value" style="color:#d2a8ff;">6</div>
-                            <div class="stat-label">PTS</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">19</div>
-                            <div class="stat-label">GF</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">18</div>
-                            <div class="stat-label">GA</div>
-                        </div>                        <div class="stat">
-                            <div class="stat-value positive">+1</div>
                             <div class="stat-label">DIFF</div>
                         </div>
                     </div>
@@ -1137,7 +1145,7 @@
             <summary class="drafter-header">
                 <span class="rank-badge">#4</span>
                 <h2>Jānis</h2>
-                <span class="total-pts">49 pts</span>
+                <span class="total-pts">51 pts</span>
             </summary>
             <div class="teams-grid">                <div class="team-card">
                     <div class="team-card-top">
@@ -1177,6 +1185,50 @@
                         </div>
                         <div class="stat">
                             <div class="stat-value">17</div>
+                            <div class="stat-label">GA</div>
+                        </div>                        <div class="stat">
+                            <div class="stat-value positive">+1</div>
+                            <div class="stat-label">DIFF</div>
+                        </div>
+                    </div>
+                </div>                <div class="team-card">
+                    <div class="team-card-top">
+                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/TBL_light.svg" alt="TBL" class="team-logo">                        </div>
+                        <div class="team-info">
+                            <div class="team-name">Lightning</div>
+                            <div class="team-abbrev">TBL</div>
+                            <span class="division-tag">Eastern — Atlantic</span>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">GP</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">W</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">L</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">OTL</div>
+                        </div>
+                    </div>
+                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
+                        <div class="stat">
+                            <div class="stat-value" style="color:#d2a8ff;">8</div>
+                            <div class="stat-label">PTS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">17</div>
+                            <div class="stat-label">GF</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">16</div>
                             <div class="stat-label">GA</div>
                         </div>                        <div class="stat">
                             <div class="stat-value positive">+1</div>
@@ -1229,50 +1281,6 @@
                     </div>
                 </div>                <div class="team-card">
                     <div class="team-card-top">
-                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/TBL_light.svg" alt="TBL" class="team-logo">                        </div>
-                        <div class="team-info">
-                            <div class="team-name">Lightning</div>
-                            <div class="team-abbrev">TBL</div>
-                            <span class="division-tag">Eastern — Atlantic</span>
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <div class="stat-value">6</div>
-                            <div class="stat-label">GP</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">4</div>
-                            <div class="stat-label">W</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">L</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">0</div>
-                            <div class="stat-label">OTL</div>
-                        </div>
-                    </div>
-                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
-                        <div class="stat">
-                            <div class="stat-value" style="color:#d2a8ff;">8</div>
-                            <div class="stat-label">PTS</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">17</div>
-                            <div class="stat-label">GF</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">16</div>
-                            <div class="stat-label">GA</div>
-                        </div>                        <div class="stat">
-                            <div class="stat-value positive">+1</div>
-                            <div class="stat-label">DIFF</div>
-                        </div>
-                    </div>
-                </div>                <div class="team-card">
-                    <div class="team-card-top">
                         <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/TOR_light.svg" alt="TOR" class="team-logo">                        </div>
                         <div class="team-info">
                             <div class="team-name">Maple Leafs</div>
@@ -1317,6 +1325,50 @@
                     </div>
                 </div>                <div class="team-card">
                     <div class="team-card-top">
+                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/DAL_light.svg" alt="DAL" class="team-logo">                        </div>
+                        <div class="team-info">
+                            <div class="team-name">Stars</div>
+                            <div class="team-abbrev">DAL</div>
+                            <span class="division-tag">Western — Central</span>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">GP</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">W</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">L</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">OTL</div>
+                        </div>
+                    </div>
+                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
+                        <div class="stat">
+                            <div class="stat-value" style="color:#d2a8ff;">7</div>
+                            <div class="stat-label">PTS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">16</div>
+                            <div class="stat-label">GF</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">13</div>
+                            <div class="stat-label">GA</div>
+                        </div>                        <div class="stat">
+                            <div class="stat-value positive">+3</div>
+                            <div class="stat-label">DIFF</div>
+                        </div>
+                    </div>
+                </div>                <div class="team-card">
+                    <div class="team-card-top">
                         <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/NYI_light.svg" alt="NYI" class="team-logo">                        </div>
                         <div class="team-info">
                             <div class="team-name">Islanders</div>
@@ -1356,50 +1408,6 @@
                             <div class="stat-label">GA</div>
                         </div>                        <div class="stat">
                             <div class="stat-value positive">+4</div>
-                            <div class="stat-label">DIFF</div>
-                        </div>
-                    </div>
-                </div>                <div class="team-card">
-                    <div class="team-card-top">
-                        <div class="logo-circle">                        <img src="https://assets.nhle.com/logos/nhl/svg/DAL_light.svg" alt="DAL" class="team-logo">                        </div>
-                        <div class="team-info">
-                            <div class="team-name">Stars</div>
-                            <div class="team-abbrev">DAL</div>
-                            <span class="division-tag">Western — Central</span>
-                        </div>
-                    </div>
-                    <div class="stats-row">
-                        <div class="stat">
-                            <div class="stat-value">6</div>
-                            <div class="stat-label">GP</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">W</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">L</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">1</div>
-                            <div class="stat-label">OTL</div>
-                        </div>
-                    </div>
-                    <div class="stats-row" style="border-top:none;margin-top:0;padding-top:0.4rem;">
-                        <div class="stat">
-                            <div class="stat-value" style="color:#d2a8ff;">5</div>
-                            <div class="stat-label">PTS</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">13</div>
-                            <div class="stat-label">GF</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">11</div>
-                            <div class="stat-label">GA</div>
-                        </div>                        <div class="stat">
-                            <div class="stat-value positive">+2</div>
                             <div class="stat-label">DIFF</div>
                         </div>
                     </div>
@@ -1497,5 +1505,82 @@
             Data from nhl.com · Updated automatically
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script>
+    (function() {
+        const history = [{"date": "2026-09-30", "drafters": [{"name": "Edgars", "points": 5}, {"name": "K\u0101rlis", "points": 5}, {"name": "J\u0101nis", "points": 2}, {"name": "Raivis", "points": 0}]}, {"date": "2026-10-01", "drafters": [{"name": "Edgars", "points": 7}, {"name": "K\u0101rlis", "points": 5}, {"name": "J\u0101nis", "points": 4}, {"name": "Raivis", "points": 2}]}, {"date": "2026-10-02", "drafters": [{"name": "Edgars", "points": 11}, {"name": "Raivis", "points": 10}, {"name": "K\u0101rlis", "points": 10}, {"name": "J\u0101nis", "points": 5}]}, {"date": "2026-10-03", "drafters": [{"name": "Raivis", "points": 14}, {"name": "K\u0101rlis", "points": 14}, {"name": "Edgars", "points": 13}, {"name": "J\u0101nis", "points": 6}]}, {"date": "2026-10-04", "drafters": [{"name": "Edgars", "points": 24}, {"name": "K\u0101rlis", "points": 21}, {"name": "Raivis", "points": 20}, {"name": "J\u0101nis", "points": 11}]}, {"date": "2026-10-05", "drafters": [{"name": "Edgars", "points": 28}, {"name": "K\u0101rlis", "points": 23}, {"name": "Raivis", "points": 22}, {"name": "J\u0101nis", "points": 14}]}, {"date": "2026-10-06", "drafters": [{"name": "Edgars", "points": 30}, {"name": "K\u0101rlis", "points": 23}, {"name": "Raivis", "points": 22}, {"name": "J\u0101nis", "points": 20}]}, {"date": "2026-10-07", "drafters": [{"name": "Edgars", "points": 35}, {"name": "K\u0101rlis", "points": 29}, {"name": "J\u0101nis", "points": 26}, {"name": "Raivis", "points": 25}]}, {"date": "2026-10-08", "drafters": [{"name": "Edgars", "points": 35}, {"name": "K\u0101rlis", "points": 31}, {"name": "J\u0101nis", "points": 28}, {"name": "Raivis", "points": 27}]}, {"date": "2026-10-09", "drafters": [{"name": "Edgars", "points": 41}, {"name": "K\u0101rlis", "points": 38}, {"name": "J\u0101nis", "points": 35}, {"name": "Raivis", "points": 29}]}, {"date": "2026-10-10", "drafters": [{"name": "Edgars", "points": 44}, {"name": "K\u0101rlis", "points": 38}, {"name": "Raivis", "points": 35}, {"name": "J\u0101nis", "points": 35}]}, {"date": "2026-10-11", "drafters": [{"name": "Edgars", "points": 53}, {"name": "K\u0101rlis", "points": 46}, {"name": "Raivis", "points": 43}, {"name": "J\u0101nis", "points": 42}]}, {"date": "2026-10-12", "drafters": [{"name": "Edgars", "points": 59}, {"name": "K\u0101rlis", "points": 46}, {"name": "Raivis", "points": 43}, {"name": "J\u0101nis", "points": 42}]}, {"date": "2026-10-13", "drafters": [{"name": "Edgars", "points": 61}, {"name": "K\u0101rlis", "points": 48}, {"name": "Raivis", "points": 45}, {"name": "J\u0101nis", "points": 42}]}, {"date": "2026-10-14", "drafters": [{"name": "Edgars", "points": 69}, {"name": "K\u0101rlis", "points": 60}, {"name": "Raivis", "points": 53}, {"name": "J\u0101nis", "points": 49}]}, {"date": "2026-10-15", "drafters": [{"name": "Edgars", "points": 69}, {"name": "K\u0101rlis", "points": 60}, {"name": "Raivis", "points": 56}, {"name": "J\u0101nis", "points": 51}]}];
+        const ctx = document.getElementById('chart');
+        const names = [];
+        const datasets = [];
+        const labels = history.map(e => e.date);
+
+        for (const e of history) {
+            for (const d of e.drafters) {
+                if (!names.includes(d.name)) names.push(d.name);
+            }
+        }
+
+        const colors = ['#58a6ff', '#f0883e', '#3fb950', '#d2a8ff', '#f85149', '#79c0ff'];
+
+        for (let ni = 0; ni < names.length; ni++) {
+            const name = names[ni];
+            const color = colors[ni % colors.length];
+            const points = history.map(e => {
+                const d = e.drafters.find(d => d.name === name);
+                return d ? d.points : null;
+            });
+            datasets.push({
+                label: name,
+                data: points,
+                borderColor: color,
+                backgroundColor: color,
+                borderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                pointBackgroundColor: color,
+                pointBorderColor: '#fff',
+                pointBorderWidth: 1.5,
+                tension: 0,
+                spanGaps: false
+            });
+        }
+
+        new Chart(ctx, {
+            type: 'line',
+            data: { labels, datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: {
+                        labels: { color: '#484f58', font: { size: 11 } }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y} pts`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            maxTicksLimit: 10,
+                            color: '#484f58',
+                            font: { size: 10 }
+                        },
+                        grid: { color: '#21262d' }
+                    },
+                    y: {
+                        min: 0,
+                        ticks: { color: '#484f58', font: { size: 11 } },
+                        grid: { color: '#21262d' }
+                    }
+                }
+            }
+        });
+    })();
+    </script>
 </body>
 </html>
