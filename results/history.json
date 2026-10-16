@@ -313,5 +313,47 @@
         "points": 49
       }
     ]
+  },
+  {
+    "date": "2026-10-15",
+    "drafters": [
+      {
+        "name": "Edgars",
+        "points": 69
+      },
+      {
+        "name": "K\u0101rlis",
+        "points": 60
+      },
+      {
+        "name": "Raivis",
+        "points": 56
+      },
+      {
+        "name": "J\u0101nis",
+        "points": 51
+      }
+    ]
+  },
+  {
+    "date": "2026-10-16",
+    "drafters": [
+      {
+        "name": "Edgars",
+        "points": 74
+      },
+      {
+        "name": "K\u0101rlis",
+        "points": 68
+      },
+      {
+        "name": "Raivis",
+        "points": 62
+      },
+      {
+        "name": "J\u0101nis",
+        "points": 60
+      }
+    ]
   }
 ]
