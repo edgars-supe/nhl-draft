@@ -17,7 +17,7 @@ def save_history(drafters):
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    entries = _load_history()
+    entries = load_history()
 
     # Replace or append
     found = False
@@ -54,10 +54,3 @@ def _snapshot(drafters):
         key=lambda x: x["points"],
         reverse=True,
     )
-
-
-def _load_history():
-    if not os.path.exists(HISTORY_FILE):
-        return []
-    with open(HISTORY_FILE) as f:
-        return json.load(f)
