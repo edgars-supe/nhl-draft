@@ -1,22 +1,27 @@
+from __future__ import annotations
+
+from typing import Any
+
+
 class Team:
-    def __init__(self, data):
-        self.name = data['teamName']['default']
-        self.common_name = data.get('teamCommonName', {}).get('default', self.name)
-        self.abbrev = data['teamAbbrev']['default']
-        self.points = data['points']
-        self.wins = data['wins']
-        self.losses = data['losses']
-        self.ot_losses = data.get('otLosses', 0)
-        self.games_played = data['gamesPlayed']
-        self.goal_for = data['goalFor']
-        self.goal_against = data['goalAgainst']
-        self.goal_differential = data.get('goalDifferential', 0)
-        self.logo = data.get('teamLogo', '')
-        self.division = data.get('divisionName', '')
-        self.conference = data.get('conferenceName', '')
+    def __init__(self, data: dict[str, Any]) -> None:
+        self.name: str = data['teamName']['default']
+        self.common_name: str = data.get('teamCommonName', {}).get('default', self.name)
+        self.abbrev: str = data['teamAbbrev']['default']
+        self.points: int = data['points']
+        self.wins: int = data['wins']
+        self.losses: int = data['losses']
+        self.ot_losses: int = data.get('otLosses', 0)
+        self.games_played: int = data['gamesPlayed']
+        self.goal_for: int = data['goalFor']
+        self.goal_against: int = data['goalAgainst']
+        self.goal_differential: int = data.get('goalDifferential', 0)
+        self.logo: str = data.get('teamLogo', '')
+        self.division: str = data.get('divisionName', '')
+        self.conference: str = data.get('conferenceName', '')
 
 
 class Drafter:
-    def __init__(self, n: str, t: set[Team]):
-        self.name = n
-        self.teams = t
+    def __init__(self, n: str, t: set[Team]) -> None:
+        self.name: str = n
+        self.teams: set[Team] = t

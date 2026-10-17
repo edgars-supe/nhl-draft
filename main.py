@@ -1,21 +1,25 @@
+from __future__ import annotations
+
 import json
+
 from nhlpy.nhl_client import NHLClient
 
-from standings import get_teams
-from models import Drafter
-from html_output import generate_html
+from generate_html import generate_html
 from history import save_history
+from models import Drafter
+from standings import get_teams
 
 
-def main():
-    client = NHLClient(debug=True)
-    teams = get_teams(client)
+def main() -> None:
+    client: NHLClient = NHLClient(debug=True)
+    teams: dict[str, Team] = get_teams(client)
 
     with open("draft.json") as f:
-        draft = json.load(f)
-    drafters = [Drafter(d['player'], {teams[t] for t in d['teams']}) for d in draft]
+        draft: list[dict[str, Any]] = json.load(f)
+    drafters: list[Drafter] = [Drafter(d['player'], {teams[t] for t in d['teams']}) for d in draft]
     save_history(drafters)
     generate_html(drafters)
+
 
 if __name__ == '__main__':
     main()
