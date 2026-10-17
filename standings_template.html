@@ -174,6 +174,7 @@
                         labels: { color: '#484f58', font: { size: 11 } }
                     },
                     tooltip: {
+                        itemSort: (a, b) => b.raw - a.raw,
                         callbacks: {
                             label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y} pts`
                         }
