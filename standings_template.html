@@ -24,7 +24,8 @@
                             <th>Drafter</th>
                             <th>Record</th>
                             <th>Teams</th>
-                            <th style="text:right">Points</th>
+                            <th style="text-align:center">Points</th>
+                            <th style="text-align:center">Diff</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,7 @@
                             <td class="record-col">{{ entry.record }}</td>
                             <td class="teams-col">{{ entry.teams | team_badges }}</td>
                             <td class="pts-col">{{ entry.total_points }}</td>
+                            <td class="diff-col">{% set diff_class = "positive" if entry.points_diff > 0 else ("negative" if entry.points_diff < 0 else "") %}{{ entry.points_diff | format_diff }}</td>
                         </tr>
                         {%- endfor %}
                     </tbody>
@@ -142,10 +144,11 @@
             const name = names[ni];
             const firstOccurrence = graphEntries[0].drafters.find(d => d.name === name);
             const color = firstOccurrence ? firstOccurrence.color : '#58a6ff';
-            const points = graphEntries.map(e => {
+            const data = graphEntries.map(e => {
                 const d = e.drafters.find(d => d.name === name);
-                return d ? d.points : null;
+                return d ? { x: e.date, y: d.points, diff: d.points_diff } : null;
             });
+            const points = data.map(d => d ? d.y : null);
             datasets.push({
                 label: name,
                 data: points,
@@ -158,7 +161,8 @@
                 pointBorderColor: '#fff',
                 pointBorderWidth: 1.5,
                 tension: 0,
-                spanGaps: false
+                spanGaps: false,
+                _rawData: data
             });
         }
 
@@ -176,7 +180,14 @@
                     tooltip: {
                         itemSort: (a, b) => b.raw - a.raw,
                         callbacks: {
-                            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y} pts`
+                            label: (ctx) => {
+                                const ds = ctx.dataset;
+                                const idx = ctx.dataIndex;
+                                const raw = ds._rawData[idx];
+                                const diff = raw ? raw.diff : 0;
+                                const diffStr = diff > 0 ? ` (+${diff})` : (diff < 0 ? ` (${diff})` : '');
+                                return `${ctx.dataset.label}: ${ctx.parsed.y} pts${diffStr}`;
+                            }
                         }
                     }
                 },

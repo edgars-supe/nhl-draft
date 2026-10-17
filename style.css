@@ -348,7 +348,13 @@ header .update-time {
     font-family: "SF Mono", "Fira Code", monospace;
     font-weight: 700;
     color: #d2a8ff;
-    text-align: right;
+    text-align: center;
+}
+
+.records-table .diff-col {
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-weight: 700;
+    text-align: center;
 }
 
 .footer {

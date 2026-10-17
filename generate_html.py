@@ -13,11 +13,12 @@ from models import Drafter, Team
 class StandingsEntry:
     """Represents a row in the standings table."""
 
-    def __init__(self, name: str, total_points: int, record: str, teams: set[Team]) -> None:
+    def __init__(self, name: str, total_points: int, record: str, teams: set[Team], points_diff: int = 0) -> None:
         self.name: str = name
         self.total_points: int = total_points
         self.record: str = record
         self.teams: set[Team] = teams
+        self.points_diff: int = points_diff
 
 
 class GraphDateEntry:
@@ -64,27 +65,39 @@ class DrafterPoint:
         '#58a6ff', '#f0883e', '#3fb950', '#d2a8ff', '#f85149', '#79c0ff',
     ]
 
-    def __init__(self, name: str, points: int, color: str) -> None:
+    def __init__(self, name: str, points: int, color: str, points_diff: int = 0) -> None:
         self.name: str = name
         self.points: int = points
         self.color: str = color
+        self.points_diff: int = points_diff
 
 
 def _build_team_info(team: Team) -> TeamInfo:
     return TeamInfo(team)
 
 
-def _build_standings_entry(drafter: Drafter) -> StandingsEntry:
+def _build_standings_entry(drafter: Drafter, history: list[dict[str, Any]]) -> StandingsEntry:
     teams: list[Team] = sorted(drafter.teams, key=lambda t: t.points, reverse=True)
     total: int = sum(t.points for t in teams)
     wins: int = sum(t.wins for t in teams)
     losses: int = sum(t.losses for t in teams)
     ot_losses: int = sum(t.ot_losses for t in teams)
+
+    points_diff: int = 0
+    drafter_points: dict[str, list[int]] = {}
+    for entry in history:
+        for d in entry["drafters"]:
+            drafter_points.setdefault(d["name"], []).append(d["points"])
+    points_list = drafter_points.get(drafter.name, [])
+    if len(points_list) >= 2:
+        points_diff = points_list[-1] - points_list[-2]
+
     return StandingsEntry(
         name=drafter.name,
         total_points=total,
         record=f"{wins}-{losses}-{ot_losses}",
         teams=drafter.teams,
+        points_diff=points_diff,
     )
 
 
@@ -111,16 +124,32 @@ def _build_graph_entries(history: list[dict[str, Any]]) -> list[GraphDateEntry]:
         name_to_index[name] = i
         name_to_color[name] = DrafterPoint.CHART_COLORS[i % len(DrafterPoint.CHART_COLORS)]
 
-    result: list[GraphDateEntry] = []
+    # Build a map of drafter name -> list of points across all history entries
+    drafter_points_map: dict[str, list[int]] = {}
     for entry in history:
-        drafters: list[DrafterPoint] = [
-            DrafterPoint(
-                name=d["name"],
-                points=d["points"],
-                color=name_to_color[d["name"]],
+        for d in entry["drafters"]:
+            drafter_points_map.setdefault(d["name"], []).append(d["points"])
+
+    result: list[GraphDateEntry] = []
+    for entry_idx, entry in enumerate(history):
+        drafters: list[DrafterPoint] = []
+        for d in entry["drafters"]:
+            points_list = drafter_points_map.get(d["name"], [])
+            # Compute diff from previous day for THIS entry
+            points_diff: int = 0
+            if entry_idx > 0:
+                prev_points = points_list[entry_idx - 1] if entry_idx - 1 < len(points_list) else None
+                curr_points = points_list[entry_idx]
+                if prev_points is not None:
+                    points_diff = curr_points - prev_points
+            drafters.append(
+                DrafterPoint(
+                    name=d["name"],
+                    points=d["points"],
+                    color=name_to_color[d["name"]],
+                    points_diff=points_diff,
+                )
             )
-            for d in entry["drafters"]
-        ]
         result.append(GraphDateEntry(date=entry["date"], drafters=drafters))
     return result
 
@@ -138,12 +167,20 @@ def generate_html(drafters: list[Drafter], output_file: str = "index.html") -> N
             for t in teams
         )
 
+    def format_diff(diff: int) -> str:
+        if diff > 0:
+            return f"+{diff}"
+        return str(diff)
+
     env.filters["team_badges"] = team_badges
+    env.filters["format_diff"] = format_diff
 
     template: Any = env.get_template("standings_template.html")
 
+    history: list[dict[str, Any]] = load_history()
+
     standings: list[StandingsEntry] = sorted(
-        [_build_standings_entry(d) for d in drafters],
+        [_build_standings_entry(d, history) for d in drafters],
         key=lambda t: t.total_points,
         reverse=True,
     )
@@ -154,7 +191,6 @@ def generate_html(drafters: list[Drafter], output_file: str = "index.html") -> N
         reverse=True,
     )
 
-    history: list[dict[str, Any]] = load_history()
     graph_entries: list[GraphDateEntry] = _build_graph_entries(history)
 
     def _serialize_graph_entries(entries: list[GraphDateEntry]) -> list[dict[str, Any]]:
@@ -162,7 +198,7 @@ def generate_html(drafters: list[Drafter], output_file: str = "index.html") -> N
             {
                 "date": e.date,
                 "drafters": [
-                    {"name": d.name, "points": d.points, "color": d.color}
+                    {"name": d.name, "points": d.points, "color": d.color, "points_diff": d.points_diff}
                     for d in e.drafters
                 ],
             }
