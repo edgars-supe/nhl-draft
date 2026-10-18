@@ -13,11 +13,12 @@ from models import Drafter, Team
 class StandingsEntry:
     """Represents a row in the standings table."""
 
-    def __init__(self, name: str, total_points: int, record: str, teams: set[Team], points_diff: int = 0) -> None:
+    def __init__(self, name: str, total_points: int, record: str, teams: set[Team], games_played: int = 0, points_diff: int = 0) -> None:
         self.name: str = name
         self.total_points: int = total_points
         self.record: str = record
         self.teams: set[Team] = teams
+        self.games_played: int = games_played
         self.points_diff: int = points_diff
 
 
@@ -82,6 +83,7 @@ def _build_standings_entry(drafter: Drafter, history: list[dict[str, Any]]) -> S
     wins: int = sum(t.wins for t in teams)
     losses: int = sum(t.losses for t in teams)
     ot_losses: int = sum(t.ot_losses for t in teams)
+    games_played: int = sum(t.games_played for t in teams)
 
     points_diff: int = 0
     drafter_points: dict[str, list[int]] = {}
@@ -97,6 +99,7 @@ def _build_standings_entry(drafter: Drafter, history: list[dict[str, Any]]) -> S
         total_points=total,
         record=f"{wins}-{losses}-{ot_losses}",
         teams=drafter.teams,
+        games_played=games_played,
         points_diff=points_diff,
     )
 
