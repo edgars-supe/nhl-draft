@@ -712,5 +712,26 @@
         "points": 123
       }
     ]
+  },
+  {
+    "date": "2026-11-03",
+    "drafters": [
+      {
+        "name": "K\u0101rlis",
+        "points": 135
+      },
+      {
+        "name": "Raivis",
+        "points": 131
+      },
+      {
+        "name": "Edgars",
+        "points": 131
+      },
+      {
+        "name": "J\u0101nis",
+        "points": 125
+      }
+    ]
   }
 ]
