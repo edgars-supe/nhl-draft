@@ -13,13 +13,14 @@ from models import Drafter, Team
 class StandingsEntry:
     """Represents a row in the standings table."""
 
-    def __init__(self, name: str, total_points: int, record: str, teams: set[Team], games_played: int = 0, points_diff: int = 0) -> None:
+    def __init__(self, name: str, total_points: int, record: str, teams: set[Team], games_played: int = 0, points_diff: int = 0, points_per_game: float = 0.0) -> None:
         self.name: str = name
         self.total_points: int = total_points
         self.record: str = record
         self.teams: set[Team] = teams
         self.games_played: int = games_played
         self.points_diff: int = points_diff
+        self.points_per_game: float = points_per_game
 
 
 class GraphDateEntry:
@@ -94,6 +95,8 @@ def _build_standings_entry(drafter: Drafter, history: list[dict[str, Any]]) -> S
     if len(points_list) >= 2:
         points_diff = points_list[-1] - points_list[-2]
 
+    points_per_game: float = total / games_played if games_played > 0 else 0.0
+
     return StandingsEntry(
         name=drafter.name,
         total_points=total,
@@ -101,6 +104,7 @@ def _build_standings_entry(drafter: Drafter, history: list[dict[str, Any]]) -> S
         teams=drafter.teams,
         games_played=games_played,
         points_diff=points_diff,
+        points_per_game=points_per_game,
     )
 
 
@@ -175,8 +179,12 @@ def generate_html(drafters: list[Drafter], output_file: str = "index.html") -> N
             return f"+{diff}"
         return str(diff)
 
+    def format_ppg(value: float) -> str:
+        return f"{value:.2f}"
+
     env.filters["team_badges"] = team_badges
     env.filters["format_diff"] = format_diff
+    env.filters["format_ppg"] = format_ppg
 
     template: Any = env.get_template("standings_template.html")
 

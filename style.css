@@ -340,7 +340,8 @@ header .update-time {
 
     .records-table .record-col,
     .records-table .pts-col,
-    .records-table .gp-col {
+    .records-table .gp-col,
+    .records-table .ppg-col {
         font-size: 0.7rem;
     }
 }
@@ -360,6 +361,11 @@ header .update-time {
 .records-table .diff-col {
     font-family: "SF Mono", "Fira Code", monospace;
     font-weight: 700;
+    text-align: center;
+}
+
+.records-table .ppg-col {
+    font-family: "SF Mono", "Fira Code", monospace;
     text-align: center;
 }
 

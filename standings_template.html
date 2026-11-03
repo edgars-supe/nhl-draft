@@ -27,6 +27,7 @@
                             <th>Teams</th>
                             <th style="text-align:center">Points</th>
                             <th style="text-align:center">Diff</th>
+                            <th style="text-align:center">Pts/GP</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +40,7 @@
                             <td class="teams-col">{{ entry.teams | team_badges }}</td>
                             <td class="pts-col">{{ entry.total_points }}</td>
                             <td class="diff-col">{% set diff_class = "positive" if entry.points_diff > 0 else ("negative" if entry.points_diff < 0 else "") %}{{ entry.points_diff | format_diff }}</td>
+                            <td class="ppg-col">{{ entry.points_per_game | format_ppg }}</td>
                         </tr>
                         {%- endfor %}
                     </tbody>
