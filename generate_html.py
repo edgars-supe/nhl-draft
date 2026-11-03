@@ -13,11 +13,11 @@ from models import Drafter, Team
 class StandingsEntry:
     """Represents a row in the standings table."""
 
-    def __init__(self, name: str, total_points: int, record: str, teams: set[Team], games_played: int = 0, points_diff: int = 0, points_per_game: float = 0.0) -> None:
+    def __init__(self, name: str, total_points: int, record: str, teams: list[Team], games_played: int = 0, points_diff: int = 0, points_per_game: float = 0.0) -> None:
         self.name: str = name
         self.total_points: int = total_points
         self.record: str = record
-        self.teams: set[Team] = teams
+        self.teams: list[Team] = teams
         self.games_played: int = games_played
         self.points_diff: int = points_diff
         self.points_per_game: float = points_per_game
@@ -79,7 +79,7 @@ def _build_team_info(team: Team) -> TeamInfo:
 
 
 def _build_standings_entry(drafter: Drafter, history: list[dict[str, Any]]) -> StandingsEntry:
-    teams: list[Team] = sorted(drafter.teams, key=lambda t: t.points, reverse=True)
+    teams: list[Team] = list(drafter.teams)  # draft order, as listed in draft.json
     total: int = sum(t.points for t in teams)
     wins: int = sum(t.wins for t in teams)
     losses: int = sum(t.losses for t in teams)
@@ -101,7 +101,7 @@ def _build_standings_entry(drafter: Drafter, history: list[dict[str, Any]]) -> S
         name=drafter.name,
         total_points=total,
         record=f"{wins}-{losses}-{ot_losses}",
-        teams=drafter.teams,
+        teams=teams,
         games_played=games_played,
         points_diff=points_diff,
         points_per_game=points_per_game,
@@ -168,7 +168,7 @@ def generate_html(drafters: list[Drafter], output_file: str = "index.html") -> N
         lstrip_blocks=True,
     )
 
-    def team_badges(teams: set[Team]) -> str:
+    def team_badges(teams: list[Team]) -> str:
         return "".join(
             f'<span class="team-badge">{t.abbrev}</span>'
             for t in teams

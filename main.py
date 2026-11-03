@@ -16,7 +16,7 @@ def main() -> None:
 
     with open("draft.json") as f:
         draft: list[dict[str, Any]] = json.load(f)
-    drafters: list[Drafter] = [Drafter(d['player'], {teams[t] for t in d['teams']}) for d in draft]
+    drafters: list[Drafter] = [Drafter(d['player'], [teams[t] for t in d['teams']]) for d in draft]
     save_history(drafters)
     generate_html(drafters)
 

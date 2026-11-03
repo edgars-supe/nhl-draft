@@ -22,6 +22,6 @@ class Team:
 
 
 class Drafter:
-    def __init__(self, n: str, t: set[Team]) -> None:
+    def __init__(self, n: str, t: list[Team]) -> None:
         self.name: str = n
-        self.teams: set[Team] = t
+        self.teams: list[Team] = t
